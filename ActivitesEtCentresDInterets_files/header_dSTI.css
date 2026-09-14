@@ -1,0 +1,72 @@
+﻿header:not(.subtitle) {
+    /* défini: fond d'écran, hauteur et largeur */
+    background: var(--header_background);
+    height: var(--header-height);
+    width: 100%;
+    /* centre les éléments */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+/* modify le texte du header */
+header:not(.subtitle) .name {
+    font-size: calc(var(--header-height)*3/5);
+    font-weight: 700;
+    color: white;
+}
+
+/* cache la checkbox */
+header:not(.subtitle) div:has(input[type=checkbox]) {
+    display: none;
+}
+
+header:not(.subtitle) input[type=checkbox] {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    header:not(.subtitle) div:has(input[type=checkbox]) {
+        /* centre les éléments */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* taille relative à la hauter du header */
+        font-size: calc(var(--header-height)*3/5);
+        width: var(--header-height);
+        aspect-ratio: 7/5;
+        /* positonnemment */
+        position: absolute;
+        right: 1%;
+        top: 50%;
+        translate: -2px -50%;
+        /* apparence */
+        border: 1px solid hsl(from var(--navigation_toggle_border) h s l / 0.4);
+        background: var(--navigation_toggle_background);
+        color: white;
+        border-radius: 15%;
+    }
+
+        header:not(.subtitle) div:has(input[type=checkbox]):hover {
+            /* augmentation de la taille du bord */
+            border: 3px solid hsl(from var(--navigation_toggle_border) h s l);
+            translate: 0px -50%;
+        }
+
+    header:not(.subtitle) div:has(input[type=checkbox]:checked) {
+        /* modification de l'arrière plan */
+        background: var(--navigation_toggle_checked_background);
+    }
+
+    header:not(.subtitle) div:has(input[type=checkbox]), header:not(.subtitle) div:has(input[type=checkbox]) * {
+        cursor: pointer;
+    }
+
+    /* affichage du menu quand la checkbox est cochée */
+    header:not(.subtitle):has( input[type=checkbox]:checked) + .navigation_container {
+        display: block;
+    }
+}

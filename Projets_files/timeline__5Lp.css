@@ -1,0 +1,141 @@
+﻿.timeline {
+    position: relative;
+    width: 100%;
+    animation-name: timelineBackgroundAnimation;
+    animation-duration: 4s;
+}
+
+/* barre centrale */
+.timeline-bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--bar-width);
+    background: var(--timeline-bar-color);
+    z-index: 0;
+}
+
+
+/* contenu */
+.timeline-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+/* une ligne */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--timeline-point-diameter) minmax(0, 1fr);
+    align-items: center;
+}
+
+/* step */
+
+.timeline-step {
+    min-width: 0;
+    box-sizing: border-box;
+    background: var(--timeline-container-background);
+    /*
+       Le vrai border est volontairement supprimé.
+       Il est créé par ::before.
+    */
+    border: none;
+}
+
+
+    /*
+        CONTOUR DU STEP
+        Le bord est entièrement réalisé
+        avec ::before.
+    */
+.timeline-step {
+    position: relative;
+    margin: var(--timeline-container-margin);
+    padding: 0.6rem 0.8rem;
+    background-color: var(--timeline-container-background);
+    /* crée le contexte d'empilement */
+    isolation: isolate;
+    border-radius: var(--timeline-step-border-radius);
+}
+
+.timeline-step::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: var(--timeline-container-border-width);
+    background: var(--timeline-container-border-color);
+    border-radius: var(--timeline-step-border-radius);
+    pointer-events: none;
+    z-index: 0;
+    /* transforme le centre en trou */
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+
+/* ─────────────────────────────
+   ALTERNANCE GAUCHE / DROITE
+   ───────────────────────────── */
+
+/*
+   1er élément : à gauche
+*/
+.timeline-grid:nth-child(odd) .timeline-step {
+    grid-column: 1;
+    text-align: right;
+    margin-left: var(--timeline-container-margin);
+}
+
+
+/*
+   2ème élément : à droite
+*/
+.timeline-grid:nth-child(even) .timeline-step {
+    grid-column: 3;
+    text-align: left;
+    margin-right: var(--timeline-container-margin);
+}
+
+
+/* ─────────────────────────────
+   POINT ROUGE
+   ───────────────────────────── */
+
+.timeline-point {
+    grid-column: 2;
+    grid-row: 1;
+    width: var(--timeline-point-diameter);
+    height: var(--timeline-point-diameter);
+    border-radius: 50%;
+    background: var(--timeline-point-color);
+    justify-self: center;
+    z-index: 2;
+}
+
+
+/* ─────────────────────────────
+   TYPOGRAPHIE
+   ───────────────────────────── */
+
+.timeline-date {
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+}
+
+
+.timeline-info {
+    font-size: clamp(13px, 3vw, 18px);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+
+.timeline-description {
+    font-size: clamp(0.9rem, 1.5vw, 1.3rem);
+    font-weight: 600;
+    line-height: 1.2;
+}

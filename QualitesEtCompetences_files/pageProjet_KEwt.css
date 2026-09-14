@@ -1,0 +1,56 @@
+﻿#radio-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: 3vh;
+}
+
+#radio-container .radio {
+    display: none;
+}
+
+#radio-container #professionnal-radio + label {
+    background: radial-gradient(#F08080, #DC143C 90%);
+}
+
+#radio-container #personnal-radio + label {
+    background: radial-gradient(#8080F0, #143CDC 90%);
+}
+
+#radio-container #professionnal-radio:hover + label {
+    background: radial-gradient(#F09090, #F43C64 90%);
+    filter: brightness(1.8);
+}
+
+#radio-container #personnal-radio:hover + label {
+    background: radial-gradient(#9090F0, #3C64F4 90%);
+    filter: brightness(1.8);
+}
+
+#radio-container .radio:checked + label {
+    color: white;
+}
+
+#radio-container .radio + label {
+    display: flex;
+    border-radius: 10px;
+    filter: brightness(1.5);
+    transition: all 0.2s steps(7, jump-both);
+    border: 1px solid black;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+}
+
+.projects {
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+    align-items: center;
+}
+
+#radio-container:has(.checkbox-btn > #professionnal-radio:checked) ~ #projects-container > #professionnal-content,
+#radio-container:has(.checkbox-btn > #personnal-radio:checked) ~ #projects-container > #personnal-content {
+    display: flex;
+}

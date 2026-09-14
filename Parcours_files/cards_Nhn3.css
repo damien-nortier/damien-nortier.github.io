@@ -1,0 +1,39 @@
+﻿.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background: var(--card-background);
+    margin: 10px 0 10px 0;
+    padding: 1rem 1rem;
+    border-radius: var(--card-border-radius);
+    isolation: isolate;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: var(--card-border-width);
+    background: var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    pointer-events: none;
+    z-index: 0;
+    /* transforme le centre en trou */
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+.card-title {
+    margin-bottom: .5rem;
+}
+
+.card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 50%;
+}
