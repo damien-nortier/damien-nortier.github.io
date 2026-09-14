@@ -1,0 +1,24 @@
+iframe {
+    width: 100%;
+    height: 90vh;
+}
+
+a[download="CV"] {
+    color: black;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    border: 2px solid black;
+    text-decoration: none;
+    margin: 5px;
+}
+
+a[download="CV"]:hover {
+    background-color: lightgrey;
+}
+
+a[download="CV"]:active {
+    background-color: black;
+    color: white;
+}
